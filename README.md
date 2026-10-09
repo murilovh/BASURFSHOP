@@ -59,7 +59,7 @@ Nada abaixo foi inventado no site: onde falta dado, há um placeholder ou um tex
 - [ ] `TODO(citacao)`: a frase "Prancha boa é a que volta pra água. Traz aqui que a gente resolve." é uma **sugestão** e não uma fala dele. Confirmar ou trocar. Se ele não aprovar, mude `mostrarCitacao` para `false` em `Beto.astro`.
 - [ ] `TODO(foto-beto)`: retrato do Beto (é exibido em preto e branco). Nunca usar banco de imagens.
 
-**Fotos (`TODO(fotos)`), 12 espaços**
+**Fotos (`TODO(fotos)`), 13 espaços além do retrato do Beto**
 - [ ] Hero: pranchas na parede, acessórios no balcão, prancha na bancada de conserto, pranchas e roupas de aluguel
 - [ ] Serviços: pranchas na parede da loja, pranchas e roupas de aluguel
 - [ ] Galeria: conserto antes, conserto depois, pranchas na loja, Beto no conserto ou no shape, fachada da loja, prancha shapeada pelo Beto

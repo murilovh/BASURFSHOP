@@ -1,0 +1,52 @@
+---
+import ArrowUpRight from '@lucide/astro/icons/arrow-up-right';
+import BrandIcon from './BrandIcon.astro';
+import { Image } from 'astro:assets';
+import logo from '../assets/logo-ba-white.png';
+import { business } from '../data/site';
+
+const items = Array.from({ length: 6 });
+---
+<section aria-label="Sobre a loja" class="border-y border-bone/10">
+  <!-- Faixa "feito na Praia do Rosa": o unico marquee da pagina -->
+  <div class="overflow-hidden border-b border-bone/10 py-5" aria-hidden="true">
+    <div class="marquee-track flex w-max items-center">
+      {
+        [0, 1].map(() =>
+          items.map(() => (
+            <span class="flex items-center gap-8 pr-8 font-display text-display-sm font-extrabold uppercase whitespace-nowrap">
+              Feito na Praia do Rosa
+              <Image src={logo} alt="" width={64} format="webp" class="h-auto w-14 opacity-60" />
+            </span>
+          )),
+        )
+      }
+    </div>
+  </div>
+  <p class="sr-only">Feito na Praia do Rosa.</p>
+
+  <div class="container-page grid gap-10 py-14 md:py-20 lg:grid-cols-12 lg:items-end">
+    <p class="font-display text-display-md font-extrabold lg:col-span-7" data-reveal>
+      Décadas de loja de surf no centrinho da Praia do Rosa.
+    </p>
+    <a
+      href={business.instagram.url}
+      target="_blank"
+      rel="noopener"
+      class="group flex items-center justify-between gap-4 rounded-board border-2 border-bone/15 p-6 transition-colors hover:border-bone sm:max-w-md lg:col-span-5 lg:col-start-8 lg:max-w-none"
+      data-reveal
+    >
+      <span class="flex min-w-0 items-center gap-4">
+        <span class="flex size-12 shrink-0 items-center justify-center rounded-pill bg-bone text-ink">
+          <BrandIcon name="instagram" size={22} />
+        </span>
+        <span class="min-w-0">
+          <span class="block truncate font-display text-lg font-bold">{business.instagram.handle}</span>
+          <span class="block text-sm text-mute">Consertos, pranchas e a loja no dia a dia</span>
+        </span>
+      </span>
+      <ArrowUpRight size={24} strokeWidth={2} class="shrink-0 transition-transform duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
+      <span class="sr-only">(abre o Instagram)</span>
+    </a>
+  </div>
+</section>

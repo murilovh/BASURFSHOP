@@ -1,0 +1,95 @@
+---
+import '../styles/global.css';
+import { business, SITE_URL, waLinks } from '../data/site';
+
+interface Props {
+  title: string;
+  description: string;
+}
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE_URL).href;
+const ogImage = new URL('/og-image.jpg', SITE_URL).href;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportingGoodsStore',
+  '@id': `${SITE_URL}/#loja`,
+  name: business.name,
+  alternateName: business.altNames,
+  description: `Loja de surf do ${business.owner} no centrinho da Praia do Rosa, Imbituba (SC). ${business.bio}`,
+  url: SITE_URL,
+  image: ogImage,
+  logo: new URL('/favicon-512.png', SITE_URL).href,
+  telephone: business.phoneE164,
+  email: business.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: business.address.street,
+    addressLocality: `${business.address.district}, ${business.address.city}`,
+    addressRegion: business.address.state,
+    postalCode: business.address.postalCode,
+    addressCountry: business.address.country,
+  },
+  areaServed: ['Praia do Rosa', 'Imbituba'],
+  founder: { '@type': 'Person', name: business.owner },
+  sameAs: [business.instagram.url, business.facebook.url],
+  potentialAction: { '@type': 'CommunicateAction', target: waLinks.geral },
+  // TODO(horario): adicionar openingHoursSpecification quando o horario for confirmado.
+  // TODO(geo): adicionar geo { latitude, longitude } a partir do pin do Google Maps.
+};
+---
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0B0B0A" />
+    <meta name="geo.region" content="BR-SC" />
+    <meta name="geo.placename" content="Praia do Rosa, Imbituba" />
+
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Logo da BA Surfboards" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body class="grain">
+    <a
+      href="#conteudo"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[70] focus:rounded-pill focus:bg-bone focus:px-5 focus:py-3 focus:text-ink"
+      >Pular para o conteúdo</a
+    >
+    <slot />
+    <script>
+      import '../scripts/alpine';
+      import { floatingButton } from '../scripts/fab';
+
+      floatingButton();
+      // GSAP + Lenis so depois da pagina pronta, sem competir com o primeiro paint
+      const loadMotion = () => import('../scripts/motion');
+      const whenIdle = () =>
+        'requestIdleCallback' in window ? requestIdleCallback(loadMotion, { timeout: 2500 }) : setTimeout(loadMotion, 1200);
+      if (document.readyState === 'complete') whenIdle();
+      else window.addEventListener('load', whenIdle, { once: true });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+---
+import WavesHorizontal from '@lucide/astro/icons/waves-horizontal';
+import ShoppingBag from '@lucide/astro/icons/shopping-bag';
+import Wrench from '@lucide/astro/icons/wrench';
+import KeyRound from '@lucide/astro/icons/key-round';
+import BrandIcon from './BrandIcon.astro';
+import PhotoSlot from './PhotoSlot.astro';
+import { business, waLinks } from '../data/site';
+
+/**
+ * As 4 frentes da loja aparecem ja no primeiro scroll: o topo tem que dizer
+ * "loja de pranchas, acessorios, consertos e aluguel".
+ * TODO(fotos): passar `src` com a foto real de cada categoria.
+ */
+const categorias = [
+  { nome: 'Pranchas', detalhe: 'Novas, usadas e shape do Beto', href: '#pranchas', icon: WavesHorizontal, todo: 'pranchas na parede da loja' },
+  { nome: 'Acessórios', detalhe: 'Parafina, leash, quilhas, capas', href: '#acessorios', icon: ShoppingBag, todo: 'acessórios no balcão' },
+  { nome: 'Consertos', detalhe: 'Avaliação e orçamento na loja', href: '#conserto', icon: Wrench, todo: 'prancha na bancada de conserto' },
+  { nome: 'Aluguel', detalhe: 'Pranchas, lycras e neoprene', href: '#aluguel', icon: KeyRound, todo: 'pranchas e roupas de aluguel' },
+];
+---
+<section id="topo" class="relative flex min-h-[100dvh] items-center pt-nav">
+  <div class="container-page grid w-full grid-cols-1 items-center gap-10 py-10 md:py-14 lg:grid-cols-12 lg:gap-12">
+    <div class="lg:col-span-6">
+      <h1 class="hero-in text-display-xl">
+        Loja de surf no centrinho <span class="text-rosa">da Rosa.</span>
+      </h1>
+      <p class="hero-in mt-6 max-w-[34rem] text-lead text-mute" style="--d: 120ms">
+        Pranchas novas e usadas, acessórios, consertos e aluguel de prancha e roupa. A loja do {business.owner}.
+      </p>
+      <div class="hero-in mt-8 flex flex-col gap-3 sm:flex-row sm:items-center" style="--d: 220ms">
+        <a href={waLinks.geral} target="_blank" rel="noopener" class="btn btn-primary">
+          <BrandIcon name="whatsapp" size={18} />
+          Chamar no WhatsApp
+        </a>
+        <a href={business.instagram.url} target="_blank" rel="noopener" class="btn btn-ghost">
+          <BrandIcon name="instagram" size={18} />
+          Ver no Instagram
+        </a>
+      </div>
+    </div>
+
+    <nav aria-label="O que tem na loja" class="lg:col-span-6">
+      <ul class="grid grid-cols-2 gap-3 md:gap-4" role="list">
+        {
+          categorias.map((c, i) => (
+            <li class="hero-in" style={`--d: ${300 + i * 80}ms`}>
+              <a
+                href={c.href}
+                class="group relative flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-board border-2 border-bone/10 transition-colors duration-300 hover:border-bone sm:aspect-[16/11] lg:aspect-[5/6]"
+              >
+                <PhotoSlot class="!absolute inset-0 !rounded-none" alt="" todo={c.todo} showHint={false} sizes="(min-width: 1024px) 25vw, 50vw" />
+                <span class="relative flex flex-col bg-gradient-to-t from-ink via-ink/80 to-transparent p-3.5 pt-12 sm:p-4 md:p-6 md:pt-16">
+                  <c.icon size={22} strokeWidth={2} class="mb-3 text-rosa" aria-hidden="true" />
+                  <span class="font-display text-base font-extrabold leading-tight sm:text-xl md:text-2xl">{c.nome}</span>
+                  <span class="mt-1 text-[0.8125rem] leading-snug text-mute md:text-sm">{c.detalhe}</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</section>

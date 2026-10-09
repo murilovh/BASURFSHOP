@@ -1,0 +1,68 @@
+---
+import MapPin from '@lucide/astro/icons/map-pin';
+import Clock from '@lucide/astro/icons/clock';
+import Phone from '@lucide/astro/icons/phone';
+import Navigation from '@lucide/astro/icons/navigation';
+import { business, mapsEmbedUrl, mapsRouteUrl } from '../data/site';
+---
+<section id="como-chegar" class="py-section" aria-labelledby="chegar-titulo">
+  <div class="container-page grid gap-10 md:grid-cols-12 md:gap-8">
+    <div class="md:col-span-5 lg:col-span-4">
+      <h2 id="chegar-titulo" class="text-display-lg" data-split>Como chegar</h2>
+
+      <ul class="mt-10 space-y-7" role="list" data-reveal>
+        <li class="flex gap-4">
+          <MapPin size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-rosa" aria-hidden="true" />
+          <address class="not-italic">
+            <span class="block font-bold">{business.address.street}</span>
+            <span class="block text-mute">
+              {business.address.district}, {business.address.city} - {business.address.state}
+            </span>
+            <span class="block text-mute">CEP {business.address.postalCode}</span>
+          </address>
+        </li>
+        <li class="flex gap-4">
+          <Clock size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-rosa" aria-hidden="true" />
+          <div>
+            <span class="block font-bold">Horário</span>
+            {
+              business.hours ? (
+                business.hours.map((h) => (
+                  <span class="block text-mute">
+                    {h.days}: {h.time}
+                  </span>
+                ))
+              ) : (
+                // TODO(horario): substituir pelo horario real em src/data/site.ts
+                <span class="block text-mute" data-todo="horario">Confirme o horário pelo WhatsApp antes de ir.</span>
+              )
+            }
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <Phone size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-rosa" aria-hidden="true" />
+          <a href={`tel:${business.phoneE164}`} class="font-bold underline decoration-bone/30 decoration-2 underline-offset-4 hover:decoration-bone">
+            {business.phoneDisplay}
+          </a>
+        </li>
+      </ul>
+
+      <a href={mapsRouteUrl} target="_blank" rel="noopener" class="btn btn-ghost mt-10" data-reveal>
+        <Navigation size={18} strokeWidth={2} aria-hidden="true" />
+        Abrir rota
+      </a>
+    </div>
+
+    <div class="md:col-span-7 lg:col-span-8" data-reveal>
+      <div class="ring-ba relative m-3 aspect-[4/5] overflow-hidden rounded-board bg-ink-800 sm:aspect-[4/3] md:m-0 md:h-full md:min-h-[28rem] md:aspect-auto">
+        <iframe
+          src={mapsEmbedUrl}
+          title="Mapa da BA Surfboards na Galeria Centrinho, Praia do Rosa"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="absolute inset-0 h-full w-full border-0 grayscale invert-[0.92] hue-rotate-180 contrast-[0.9]"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>

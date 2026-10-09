@@ -1,0 +1,108 @@
+---
+/**
+ * Servicos no formato "etiqueta de prancha": blocos com borda grossa, como o selo
+ * que vai no deck. Unica faixa clara da pagina (color block deliberado).
+ */
+import Wrench from '@lucide/astro/icons/wrench';
+import ArrowRight from '@lucide/astro/icons/arrow-right';
+import BrandIcon from './BrandIcon.astro';
+import PhotoSlot from './PhotoSlot.astro';
+import { waLinks } from '../data/site';
+
+// TODO(conserto): confirmar com o Beto a lista de reparos que a loja faz.
+const reparos = ['Dings e trincas', 'Bico e rabeta', 'Quilhas e caixas', 'Pranchas quebradas'];
+const acessorios = ['Parafina', 'Leash', 'Quilhas', 'Capas'];
+---
+<section id="servicos" class="bg-bone py-section text-ink" aria-labelledby="servicos-titulo">
+  <div class="container-page">
+    <h2 id="servicos-titulo" class="max-w-[16ch] text-display-lg" data-split>Tudo pro seu surf num lugar só.</h2>
+
+    <div class="mt-12 grid grid-cols-1 gap-4 md:mt-16 md:grid-cols-6 md:gap-5">
+      <!-- Pranchas novas e usadas -->
+      <article id="pranchas" class="flex flex-col overflow-hidden rounded-board border-[3px] border-ink md:col-span-4" data-reveal>
+        <PhotoSlot
+          class="!rounded-none aspect-[16/10]"
+          alt="Pranchas novas e usadas à venda na BA Surfboards"
+          todo="pranchas na parede da loja"
+        />
+        <div class="flex flex-1 flex-col p-6 md:p-8">
+          <h3 class="text-display-sm">Pranchas novas e usadas</h3>
+          <p class="mt-3 text-stone">Tem prancha nova e usada na loja. Pergunta o que está disponível no seu tamanho.</p>
+          <a href={waLinks.pranchas} target="_blank" rel="noopener" class="group mt-auto inline-flex items-center gap-2 pt-6 font-bold underline decoration-2 underline-offset-4">
+            Perguntar o que tem
+            <ArrowRight size={18} strokeWidth={2.25} class="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </a>
+        </div>
+      </article>
+
+      <!-- Acessorios -->
+      <article id="acessorios" class="rounded-board border-[3px] border-ink p-6 md:col-span-2 md:p-8" data-reveal>
+        <h3 class="text-display-sm">Acessórios</h3>
+        <ul class="mt-5 space-y-1 font-display text-lg font-bold" role="list">
+          {acessorios.map((a) => <li>{a}</li>)}
+        </ul>
+        <p class="mt-4 text-stone">E o que mais faltar para a sessão.</p>
+      </article>
+
+      <!-- Conserto: especialidade da casa, bloco largo no acento -->
+      <article id="conserto" class="rounded-board bg-rosa p-6 md:col-span-6 md:p-10" data-reveal>
+        <div class="flex items-start justify-between gap-6 border-b-2 border-ink pb-6">
+          <h3 class="text-display-md">Conserto</h3>
+          <Wrench size={40} strokeWidth={2} class="shrink-0" aria-hidden="true" />
+        </div>
+        <div class="grid gap-8 pt-6 md:grid-cols-12 md:items-end">
+          <div class="md:col-span-7">
+            <p class="max-w-prose text-lead font-medium">
+              A especialidade da casa. Do ding pequeno ao estrago grande, com avaliação na loja e orçamento antes de começar.
+            </p>
+            <ul class="mt-6 flex flex-wrap gap-2" role="list">
+              {reparos.map((r) => <li class="rounded-pill border-2 border-ink px-4 py-1.5 text-sm font-bold">{r}</li>)}
+            </ul>
+          </div>
+          <div class="md:col-span-5 md:justify-self-end">
+            <a href={waLinks.conserto} target="_blank" rel="noopener" class="btn btn-ink">
+              <BrandIcon name="whatsapp" size={18} />
+              Mandar foto do estrago
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Shape do Beto -->
+      <article class="flex flex-col rounded-board bg-ink p-6 text-bone md:col-span-2 md:p-8" data-reveal>
+        <h3 class="text-display-sm">Shape do Beto</h3>
+        <p class="mt-3 text-mute">
+          O Beto também shapeia. Conversa com ele sobre o seu surf, as ondas que você pega e a prancha que você quer.
+        </p>
+        <div class="mt-auto pt-10">
+          <p class="font-display text-display-md font-extrabold leading-none text-bone/10" aria-hidden="true">Feito<br />à mão</p>
+          <a href={waLinks.shape} target="_blank" rel="noopener" class="group mt-6 inline-flex items-center gap-2 font-bold text-rosa underline decoration-2 underline-offset-4">
+            Encomendar um shape
+            <ArrowRight size={18} strokeWidth={2.25} class="transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </a>
+        </div>
+      </article>
+
+      <!-- Aluguel -->
+      <a
+        href="#aluguel"
+        class="group relative flex min-h-72 flex-col justify-end overflow-hidden rounded-board text-bone md:col-span-4"
+        data-reveal
+      >
+        <PhotoSlot
+          class="!absolute inset-0 !rounded-none"
+          alt=""
+          todo="pranchas de aluguel e roupas penduradas"
+          showHint={false}
+        />
+        <div class="relative bg-gradient-to-t from-ink via-ink/85 to-transparent p-6 pt-20 md:p-8 md:pt-24">
+          <h3 class="text-display-sm">Aluguel de pranchas e roupas</h3>
+          <p class="mt-2 flex items-center gap-2 text-mute">
+            Lycra, neoprene e prancha para quem está de passagem
+            <ArrowRight size={18} strokeWidth={2.25} class="shrink-0 text-bone transition-transform group-hover:translate-x-1" aria-hidden="true" />
+          </p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

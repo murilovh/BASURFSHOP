@@ -1,0 +1,47 @@
+---
+import BrandIcon from './BrandIcon.astro';
+import PhotoSlot from './PhotoSlot.astro';
+import { waLinks } from '../data/site';
+// TODO(aluguel): confirmar com o Beto quais tipos de prancha e tamanhos de roupa existem para aluguel,
+// se o aluguel e por hora/dia e se pede documento ou caucao. Nao publicar valores sem confirmacao.
+const itens = [
+  { nome: 'Pranchas', texto: 'Para quem está aprendendo e para quem já surfa e veio sem a sua.' },
+  { nome: 'Roupas', texto: 'Lycra para o verão e neoprene para a água fria.' },
+];
+---
+<section id="aluguel" class="py-section" aria-labelledby="aluguel-titulo">
+  <div class="container-page">
+    <div class="grid gap-10 rounded-board bg-ink-800 p-6 md:grid-cols-12 md:gap-8 md:p-12 lg:p-16">
+      <div class="md:col-span-7">
+        <h2 id="aluguel-titulo" class="text-display-lg" data-split>Veio pra Rosa sem prancha?</h2>
+        <p class="mt-6 max-w-prose text-lead text-mute" data-reveal>
+          A BA aluga prancha e roupa no centrinho da Rosa. É só chamar e ver o que está livre nos dias que você vai surfar.
+        </p>
+
+        <dl class="mt-10 grid gap-8 sm:grid-cols-2" data-reveal>
+          {
+            itens.map((i) => (
+              <div class="border-t-2 border-bone pt-5">
+                <dt class="font-display text-display-sm font-extrabold">{i.nome}</dt>
+                <dd class="mt-2 text-mute">{i.texto}</dd>
+              </div>
+            ))
+          }
+        </dl>
+
+        <a href={waLinks.aluguel} target="_blank" rel="noopener" class="btn btn-primary mt-10" data-reveal>
+          <BrandIcon name="whatsapp" size={18} />
+          Consultar disponibilidade
+        </a>
+      </div>
+      <div class="md:col-span-5">
+        <PhotoSlot
+          class="h-full min-h-80 w-full"
+          alt="Pranchas e roupas de aluguel na BA Surfboards"
+          todo="pranchas e roupas de aluguel"
+          parallax={5}
+        />
+      </div>
+    </div>
+  </div>
+</section>

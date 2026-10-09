@@ -1,0 +1,50 @@
+---
+/**
+ * Espaco de foto. Com `src` renderiza a foto real otimizada (AVIF/WebP via astro:assets).
+ * Sem `src` mostra um placeholder escuro com textura de fibra e a logo em baixa opacidade.
+ * TODO(fotos): todo PhotoSlot sem `src` e uma foto real que falta. Ver lista no README.
+ */
+import { Image, Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import logo from '../assets/logo-ba-white.png';
+
+interface Props {
+  src?: ImageMetadata;
+  alt: string;
+  /** descricao da foto que deve entrar aqui (aparece no codigo e no placeholder) */
+  todo: string;
+  class?: string;
+  sizes?: string;
+  loading?: 'eager' | 'lazy';
+  showHint?: boolean;
+  parallax?: number;
+}
+const { src, alt, todo, class: className = '', sizes = '(min-width: 768px) 50vw, 100vw', loading = 'lazy', showHint = true, parallax } = Astro.props;
+---
+<div class:list={['relative overflow-hidden rounded-board', className]} data-todo-foto={src ? undefined : todo}>
+  {
+    src ? (
+      <Picture
+        src={src}
+        alt={alt}
+        sizes={sizes}
+        widths={[480, 800, 1200, 1600]}
+        formats={['avif', 'webp']}
+        loading={loading}
+        fetchpriority={loading === 'eager' ? 'high' : 'auto'}
+        pictureAttributes={{ class: "absolute inset-x-0 -top-[8%] block h-[116%]", "data-parallax": parallax }}
+        class="h-full w-full object-cover"
+      />
+    ) : (
+      <div class="fiber absolute inset-0 flex items-center justify-center" aria-hidden="true">
+        <Image src={logo} alt="" width={240} class="w-[38%] max-w-[240px] opacity-[0.09]" loading="lazy" />
+        {showHint && (
+          <span class="absolute bottom-4 left-4 right-4 text-[0.8125rem] leading-snug text-mute/80">
+            Foto em breve: {todo}
+          </span>
+        )}
+      </div>
+    )
+  }
+  <slot />
+</div>

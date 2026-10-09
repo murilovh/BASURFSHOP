@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+@config '../../tailwind.config.mjs';
+
+@import '@fontsource-variable/unbounded/wght.css';
+@import '@fontsource-variable/archivo/wght.css';
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --c-ink: #0B0B0A;
+    --c-ink-800: #131312;
+    --c-bone: #EDEDE8;
+    --c-rosa: #FF5C8A;
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  html {
+    @apply bg-ink text-bone font-sans antialiased;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply min-h-dvh bg-ink overflow-x-clip;
+  }
+  ::selection {
+    @apply bg-rosa text-ink;
+  }
+  :focus-visible {
+    outline: 3px solid var(--c-rosa);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  [id] {
+    scroll-margin-top: 5.5rem;
+  }
+  h1, h2, h3 {
+    @apply font-display font-extrabold;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-page px-gutter;
+  }
+
+  /* Botoes: sempre pilula, empurrao fisico no :active */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-pill px-6 py-3.5 font-sans text-[0.9375rem] font-bold transition-[transform,background-color,color,border-color] duration-300 ease-out select-none active:scale-[0.97] min-h-12;
+  }
+  .btn-primary {
+    @apply bg-rosa text-ink hover:bg-bone;
+  }
+  .btn-ghost {
+    @apply border-2 border-bone/30 text-bone hover:border-bone;
+  }
+  .btn-ink {
+    @apply bg-ink text-bone hover:bg-ink-700;
+  }
+
+  .label {
+    @apply font-sans text-label font-bold uppercase;
+  }
+
+  /* Contorno branco duplo, assinatura da logo */
+  .ring-ba {
+    box-shadow:
+      0 0 0 3px var(--c-bone),
+      0 0 0 9px var(--c-ink),
+      0 0 0 12px var(--c-bone);
+  }
+
+  /* Textura de tecido de fibra de vidro, usada nos placeholders de foto */
+  .fiber {
+    background-color: var(--c-ink-800);
+    background-image:
+      repeating-linear-gradient(45deg, rgb(237 237 232 / 0.045) 0 1px, transparent 1px 9px),
+      repeating-linear-gradient(-45deg, rgb(237 237 232 / 0.045) 0 1px, transparent 1px 9px),
+      radial-gradient(120% 80% at 20% 10%, rgb(237 237 232 / 0.07), transparent 60%);
+  }
+}
+
+/* Grao fixo sobre a pagina (pointer-events none, nao repinta no scroll) */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  background-image: var(--grain);
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+}
+
+/* Linhas mascaradas do SplitText */
+.split-line {
+  padding-bottom: 0.06em;
+}
+
+/* Marquee (unico na pagina) */
+@keyframes marquee {
+  to { transform: translate3d(-50%, 0, 0); }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Lenis */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+[x-cloak] { display: none !important; }
+
+/* Entrada do hero so em CSS: nao depende do JS, o LCP pinta na hora */
+@keyframes hero-in {
+  from { opacity: 0; transform: translate3d(0, 18px, 0); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in { animation: hero-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both; animation-delay: var(--d, 0ms); }
+}
+
+/* Botao flutuante do WhatsApp */
+[data-fab] {
+  opacity: 0;
+  transform: translateY(1rem) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+[data-fab].is-visible {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* Risco dos problemas: atravessa todas as linhas quando a frase quebra */
+.strike {
+  background-image: linear-gradient(var(--c-rosa), var(--c-rosa));
+  background-repeat: no-repeat;
+  background-position: 0 58%;
+  background-size: 100% 0.08em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}

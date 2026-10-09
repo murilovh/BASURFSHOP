@@ -1,0 +1,52 @@
+---
+import PhotoSlot from './PhotoSlot.astro';
+import { business } from '../data/site';
+
+/**
+ * TODO(citacao): a frase abaixo e uma SUGESTAO, nao uma fala do Beto. Confirmar ou trocar por uma frase dele.
+ * Se ele nao aprovar, mudar `mostrarCitacao` para false: a secao fica so com foto, nome e a linha alternativa.
+ */
+const mostrarCitacao = true;
+const citacao = 'Prancha boa é a que volta pra água. Traz aqui que a gente resolve.';
+const linhaAlternativa = 'Conserto, shape e aluguel no centrinho da Rosa.';
+
+/**
+ * TODO(foto-beto): foto real do Beto (vertical ou quadrada). Ela e exibida em preto e branco.
+ * Nunca usar foto de banco de imagens. Ex.: import fotoBeto from '../assets/fotos/beto.jpg';
+ */
+const fotoBeto = undefined;
+---
+<section class="py-section" aria-labelledby="beto-titulo">
+  <div class="container-page flex flex-col items-center text-center">
+    <p id="beto-titulo" class="label text-mute" data-reveal>Quem está por trás da BA</p>
+
+    <div class="mt-12" data-reveal>
+      <PhotoSlot
+        src={fotoBeto}
+        class="ring-ba size-52 !rounded-full grayscale md:size-64"
+        alt={`${business.owner}, dono e shaper da BA Surfboards, em retrato preto e branco`}
+        todo="retrato do Beto"
+        showHint={false}
+        sizes="256px"
+      />
+    </div>
+
+    <figure class="mt-14 max-w-4xl">
+      {
+        mostrarCitacao && (
+          <blockquote class="font-display text-display-md font-extrabold" data-split>
+            <p>“{citacao}”</p>
+          </blockquote>
+        )
+      }
+      <figcaption class="mt-8" data-reveal>
+        <cite class="not-italic">
+          <span class="block font-display text-xl font-bold">{business.owner}</span>
+          <span class="mt-1 block text-mute">
+            {mostrarCitacao ? 'BA Surfboards, Praia do Rosa' : linhaAlternativa}
+          </span>
+        </cite>
+      </figcaption>
+    </figure>
+  </div>
+</section>

@@ -1,0 +1,92 @@
+---
+import Store from '@lucide/astro/icons/store';
+import Search from '@lucide/astro/icons/search';
+import ReceiptText from '@lucide/astro/icons/receipt-text';
+import CircleCheck from '@lucide/astro/icons/circle-check';
+import Shirt from '@lucide/astro/icons/shirt';
+import KeyRound from '@lucide/astro/icons/key-round';
+import Waves from '@lucide/astro/icons/waves-horizontal';
+import Undo2 from '@lucide/astro/icons/undo-2';
+
+// TODO(processo): confirmar com o Beto os detalhes de cada passo (prazo, sinal, documento no aluguel etc.).
+const fluxos = [
+  {
+    id: 'conserto',
+    nome: 'Conserto',
+    passos: [
+      { icon: Store, titulo: 'Traga a prancha', texto: 'Passa na loja, no centrinho da Rosa.' },
+      { icon: Search, titulo: 'Avaliação', texto: 'O Beto olha o estrago e vê o que precisa.' },
+      { icon: ReceiptText, titulo: 'Orçamento', texto: 'Você fica sabendo o valor e o prazo antes de começar.' },
+      { icon: CircleCheck, titulo: 'Retire pronta', texto: 'Prancha consertada e pronta para a próxima sessão.' },
+    ],
+  },
+  {
+    id: 'aluguel',
+    nome: 'Aluguel',
+    passos: [
+      { icon: Shirt, titulo: 'Escolha', texto: 'Prancha e roupa do seu tamanho e do seu nível.' },
+      { icon: KeyRound, titulo: 'Retire', texto: 'Pega o equipamento na loja.' },
+      { icon: Waves, titulo: 'Surfe', texto: 'Aproveita o mar da Praia do Rosa.' },
+      { icon: Undo2, titulo: 'Devolva', texto: 'Traz de volta na loja no combinado.' },
+    ],
+  },
+];
+---
+<section class="py-section" aria-labelledby="como-titulo" x-data="{ aba: 'conserto' }">
+  <div class="container-page">
+    <h2 id="como-titulo" class="text-display-lg" data-split>Como funciona</h2>
+
+    <div role="tablist" aria-label="Escolha o serviço" class="mt-10 inline-flex rounded-pill border-2 border-bone/15 p-1.5" data-reveal>
+      {
+        fluxos.map((f) => (
+          <button
+            type="button"
+            role="tab"
+            id={`aba-${f.id}`}
+            aria-controls={`painel-${f.id}`}
+            aria-selected={f.id === 'conserto' ? 'true' : 'false'}
+            tabindex={f.id === 'conserto' ? 0 : -1}
+            x-bind:aria-selected={`(aba === '${f.id}').toString()`}
+            x-bind:tabindex={`aba === '${f.id}' ? 0 : -1`}
+            x-on:click={`aba = '${f.id}'`}
+            x-on:keydown.right.prevent="aba = aba === 'conserto' ? 'aluguel' : 'conserto'; $nextTick(() => document.getElementById('aba-' + aba).focus())"
+            x-on:keydown.left.prevent="aba = aba === 'conserto' ? 'aluguel' : 'conserto'; $nextTick(() => document.getElementById('aba-' + aba).focus())"
+            class="rounded-pill px-6 py-2.5 font-bold transition-colors duration-300 aria-selected:bg-bone aria-selected:text-ink text-mute hover:text-bone aria-selected:hover:text-ink"
+          >
+            {f.nome}
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      fluxos.map((f) => (
+        <div
+          role="tabpanel"
+          id={`painel-${f.id}`}
+          aria-labelledby={`aba-${f.id}`}
+          x-show={`aba === '${f.id}'`}
+          x-transition:enter="transition duration-500 ease-out"
+          x-transition:enter-start="opacity-0 translate-y-3"
+          class="mt-12"
+        >
+          <ol class="relative grid gap-10 md:grid-cols-4 md:gap-6" role="list">
+            <span class="absolute bottom-4 left-[1.6875rem] top-4 w-0.5 bg-bone/20 md:hidden" aria-hidden="true" />
+            <span class="absolute inset-x-0 top-[1.6875rem] hidden h-0.5 bg-bone/20 md:block" aria-hidden="true" />
+            {f.passos.map((p) => (
+              <li class="relative grid grid-cols-[3.5rem_1fr] gap-5 md:block">
+                <span class="relative flex size-14 items-center justify-center rounded-pill border-2 border-bone bg-ink">
+                  <p.icon size={24} strokeWidth={2} aria-hidden="true" />
+                </span>
+                <div class="md:mt-6">
+                  <h3 class="font-display text-xl font-bold">{p.titulo}</h3>
+                  <p class="mt-2 max-w-[28ch] text-mute">{p.texto}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      ))
+    }
+  </div>
+</section>

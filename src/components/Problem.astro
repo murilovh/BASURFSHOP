@@ -1,0 +1,26 @@
+---
+const problems = ['Prancha quebrada.', 'Rabeta amassada.', 'Sessão perdida.'];
+---
+<section class="py-section" aria-labelledby="problema-titulo">
+  <div class="container-page">
+    <h2 id="problema-titulo" class="sr-only">Prancha com problema? A gente conserta.</h2>
+    <ul class="space-y-1 md:space-y-2" role="list">
+      {
+        problems.map((p) => (
+          <li class="font-display text-display-lg font-extrabold text-mute/70">
+            <span data-strike class="strike">{p}</span>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="mt-14 grid gap-8 md:mt-20 md:grid-cols-12">
+      <p class="text-display-lg font-display font-extrabold md:col-span-9" data-split>
+        Conserto de verdade, feito por quem conhece prancha.
+      </p>
+      <p class="max-w-prose text-lead text-mute md:col-span-6 md:col-start-1" data-reveal>
+        O conserto é o carro-chefe da BA. Traz a prancha na loja, o Beto avalia o estrago e te passa o orçamento antes de começar.
+      </p>
+    </div>
+  </div>
+</section>

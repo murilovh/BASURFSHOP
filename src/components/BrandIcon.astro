@@ -1,0 +1,22 @@
+---
+// Marcas oficiais via Simple Icons (Lucide nao inclui logos de marcas).
+import { siInstagram, siFacebook, siWhatsapp } from 'simple-icons';
+
+interface Props {
+  name: 'instagram' | 'facebook' | 'whatsapp';
+  size?: number;
+  class?: string;
+}
+const { name, size = 20, class: className } = Astro.props;
+const icon = { instagram: siInstagram, facebook: siFacebook, whatsapp: siWhatsapp }[name];
+---
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  fill="currentColor"
+  aria-hidden="true"
+  focusable="false"
+  class={className}
+><path d={icon.path} /></svg>

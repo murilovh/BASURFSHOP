@@ -1,0 +1,14 @@
+---
+import BrandIcon from './BrandIcon.astro';
+import { waLinks } from '../data/site';
+---
+<a
+  href={waLinks.geral}
+  target="_blank"
+  rel="noopener"
+  data-fab
+  class="fixed bottom-[max(1rem,env(safe-area-inset-bottom))] right-4 z-float flex size-14 items-center justify-center rounded-pill bg-rosa text-ink shadow-[0_10px_30px_-10px_rgb(255_92_138/0.55)] active:scale-95 md:hidden"
+  aria-label="Chamar no WhatsApp"
+>
+  <BrandIcon name="whatsapp" size={26} />
+</a>

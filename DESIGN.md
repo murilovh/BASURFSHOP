@@ -14,16 +14,23 @@ A página se apoia em três coisas que já existem na loja:
 
 ## Paleta
 
+Só o preto e branco da logo. O rosa da primeira versão foi descartado pelo cliente, depois de comparar com laranja, amarelo, azul e verde-água.
+
 | Token | Hex | Uso |
 |---|---|---|
-| `ink` | `#0B0B0A` | fundo (o preto da logo, sem ser #000) |
-| `ink-800` | `#131312` | superfícies elevadas, placeholders |
-| `bone` | `#EDEDE8` | texto principal e faixa de Serviços (branco parafina) |
-| `mute` | `#A6A69F` | texto secundário sobre ink (contraste ~8:1) |
-| `stone` | `#55554F` | texto secundário sobre bone (contraste ~7:1) |
-| `rosa` | `#FF5C8A` | **acento único** |
+|  |  | fundo (o preto da logo, sem ser #000), bloco de Conserto e botões na faixa clara |
+|  |  | superfícies elevadas, placeholders |
+|  |  | texto, botões principais, faixa de Serviços e CTA final |
+|  |  | hover dos botões claros |
+|  |  | texto secundário sobre ink (contraste de cerca de 8:1) |
+|  |  | texto secundário sobre bone (contraste de cerca de 7:1) |
 
-**Por que rosa:** o nome da praia é Rosa, e o rosa fluorescente é a cor clássica de decal, lycra e quilha do surf dos anos 80 e 90, o que combina com uma loja tradicional. Sobre o preto ele dá contraste de 6,7:1 (AA para texto). No bloco claro ele só aparece como fundo, com texto `ink` por cima, nunca como texto sobre `bone`.
+Sem cor, o destaque vem de três recursos:
+- **Inversão:** blocos claros no fundo escuro (Serviços, CTA final) e o bloco de Conserto em preto dentro da faixa clara.
+- **Letra vazada:** o "da Rosa." do título usa só o contorno, como o "BA" da logo ().
+- **Peso e escala:** a tipografia faz o trabalho de chamar atenção.
+
+O foco do teclado é branco com anel preto, para aparecer nos dois fundos.
 
 ## Tipografia
 

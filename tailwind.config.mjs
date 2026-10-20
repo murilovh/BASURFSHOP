@@ -4,7 +4,8 @@
  *
  * Regras do sistema (seguir em todas as secoes):
  * - Tema unico escuro (herdado da logo). Uma unica faixa clara deliberada: Servicos, como "etiqueta de prancha".
- * - Um acento so: `rosa`. Em fundo escuro pode ser texto; em fundo claro, so como fundo com texto `ink`.
+ * - Sem cor de acento: so o preto e branco da logo. O destaque vem de contraste (bloco claro x escuro),
+ *   peso da fonte e letra vazada (contorno, como na logo).
  * - Formas: botoes sempre `rounded-pill`; blocos/fotos sempre `rounded-board`. Nada de cantos retos misturados.
  * - Assinatura visual: contorno branco duplo da logo (`ring-ba`) em fotos de destaque.
  */
@@ -27,10 +28,6 @@ export default {
         },
         mute: '#A6A69F', // texto secundario sobre ink (contraste ~8:1)
         stone: '#55554F', // texto secundario sobre bone (contraste ~7:1)
-        rosa: {
-          DEFAULT: '#FF5C8A', // acento: Praia do Rosa + decal fluor das pranchas
-          deep: '#E8457A',
-        },
       },
       fontFamily: {
         display: ['"Unbounded Variable"', 'ui-rounded', 'system-ui', 'sans-serif'],

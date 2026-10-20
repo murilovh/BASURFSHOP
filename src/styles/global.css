@@ -10,7 +10,6 @@
     --c-ink: #0B0B0A;
     --c-ink-800: #131312;
     --c-bone: #EDEDE8;
-    --c-rosa: #FF5C8A;
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .55 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   html {
@@ -22,11 +21,13 @@
     @apply min-h-dvh bg-ink overflow-x-clip;
   }
   ::selection {
-    @apply bg-rosa text-ink;
+    @apply bg-bone text-ink;
   }
   :focus-visible {
-    outline: 3px solid var(--c-rosa);
+    /* branco com anel preto: aparece no fundo escuro e na faixa clara */
+    outline: 3px solid var(--c-bone);
     outline-offset: 3px;
+    box-shadow: 0 0 0 6px var(--c-ink);
     border-radius: 6px;
   }
   [id] {
@@ -51,13 +52,26 @@
     @apply inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-pill px-6 py-3.5 font-sans text-[0.9375rem] font-bold transition-[transform,background-color,color,border-color] duration-300 ease-out select-none active:scale-[0.97] min-h-12;
   }
   .btn-primary {
-    @apply bg-rosa text-ink hover:bg-bone;
+    @apply bg-bone text-ink hover:bg-bone-200;
   }
   .btn-ghost {
     @apply border-2 border-bone/30 text-bone hover:border-bone;
   }
   .btn-ink {
     @apply bg-ink text-bone hover:bg-ink-700;
+  }
+
+  /* Letra vazada, eco do contorno da logo. Sem suporte a stroke, fica solida. */
+  .text-outline {
+    color: var(--c-bone);
+  }
+  @supports (-webkit-text-stroke: 1px) {
+    /* contorno desenhado por tras do preenchimento preto: esconde as sobreposicoes internas da fonte variavel */
+    .text-outline {
+      color: var(--c-ink);
+      -webkit-text-stroke: 0.07em var(--c-bone);
+      paint-order: stroke fill;
+    }
   }
 
   .label {

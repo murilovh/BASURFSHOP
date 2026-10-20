@@ -12,7 +12,7 @@ import { business, mapsEmbedUrl, mapsRouteUrl } from '../data/site';
 
       <ul class="mt-10 space-y-7" role="list" data-reveal>
         <li class="flex gap-4">
-          <MapPin size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-rosa" aria-hidden="true" />
+          <MapPin size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-bone" aria-hidden="true" />
           <address class="not-italic">
             <span class="block font-bold">{business.address.street}</span>
             <span class="block text-mute">
@@ -22,7 +22,7 @@ import { business, mapsEmbedUrl, mapsRouteUrl } from '../data/site';
           </address>
         </li>
         <li class="flex gap-4">
-          <Clock size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-rosa" aria-hidden="true" />
+          <Clock size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-bone" aria-hidden="true" />
           <div>
             <span class="block font-bold">Horário</span>
             {
@@ -40,7 +40,7 @@ import { business, mapsEmbedUrl, mapsRouteUrl } from '../data/site';
           </div>
         </li>
         <li class="flex gap-4">
-          <Phone size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-rosa" aria-hidden="true" />
+          <Phone size={24} strokeWidth={2} class="mt-0.5 shrink-0 text-bone" aria-hidden="true" />
           <a href={`tel:${business.phoneE164}`} class="font-bold underline decoration-bone/30 decoration-2 underline-offset-4 hover:decoration-bone">
             {business.phoneDisplay}
           </a>

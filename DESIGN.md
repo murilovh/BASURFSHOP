@@ -18,16 +18,16 @@ Só o preto e branco da logo. O rosa da primeira versão foi descartado pelo cli
 
 | Token | Hex | Uso |
 |---|---|---|
-|  |  | fundo (o preto da logo, sem ser #000), bloco de Conserto e botões na faixa clara |
-|  |  | superfícies elevadas, placeholders |
-|  |  | texto, botões principais, faixa de Serviços e CTA final |
-|  |  | hover dos botões claros |
-|  |  | texto secundário sobre ink (contraste de cerca de 8:1) |
-|  |  | texto secundário sobre bone (contraste de cerca de 7:1) |
+| `ink` | `#0B0B0A` | fundo (o preto da logo, sem ser #000), bloco de Conserto e botões na faixa clara |
+| `ink-800` | `#131312` | superfícies elevadas, placeholders |
+| `bone` | `#EDEDE8` | texto, botões principais, faixa de Serviços e CTA final |
+| `bone-200` | `#D9D9D3` | hover dos botões claros |
+| `mute` | `#A6A69F` | texto secundário sobre ink (contraste de cerca de 8:1) |
+| `stone` | `#55554F` | texto secundário sobre bone (contraste de cerca de 7:1) |
 
 Sem cor, o destaque vem de três recursos:
 - **Inversão:** blocos claros no fundo escuro (Serviços, CTA final) e o bloco de Conserto em preto dentro da faixa clara.
-- **Letra vazada:** o "da Rosa." do título usa só o contorno, como o "BA" da logo ().
+- **Letra vazada:** o "da Rosa." do título usa só o contorno, como o "BA" da logo (`.text-outline`).
 - **Peso e escala:** a tipografia faz o trabalho de chamar atenção.
 
 O foco do teclado é branco com anel preto, para aparecer nos dois fundos.

@@ -44,7 +44,7 @@ Nada abaixo foi inventado no site: onde falta dado, há um placeholder ou um tex
 - [ ] O perfil do Google aparece como "Baboardshop - Surf concertos". Vale corrigir o nome para "BA Surfboards" e "consertos" (com S) no Google Meu Negócio.
 
 **Serviços e processos**
-- [ ] `TODO(conserto)`: lista de reparos que a loja faz (hoje: dings e trincas, bico e rabeta, quilhas e caixas, pranchas quebradas).
+- [ ] `TODO(conserto)`: lista de reparos que a loja faz (hoje: quebradinhos, bico e rabeta, quilhas e copinhos, pranchas quebradas).
 - [ ] `TODO(processo)`: detalhes do passo a passo de conserto e aluguel (prazo, sinal, documento).
 - [ ] `TODO(aluguel)`: tipos de prancha e tamanhos de roupa disponíveis, se o aluguel é por hora ou por dia, se pede documento ou caução. Nenhum valor foi publicado.
 

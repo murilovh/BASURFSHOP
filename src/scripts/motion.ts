@@ -3,7 +3,6 @@
  * - [data-split]: titulos entram linha a linha (hierarquia: o titulo e lido primeiro).
  * - [data-reveal]: blocos entram suaves quando chegam na tela (sequencia de leitura).
  * - [data-parallax]: fotos andam um pouco mais devagar que o texto (profundidade leve).
- * - [data-strike]: os problemas sao riscados antes da solucao aparecer (narrativa problema -> solucao).
  * Com prefers-reduced-motion nada disso roda e o conteudo aparece estatico.
  */
 import { gsap } from 'gsap';
@@ -78,20 +77,6 @@ function init() {
     );
   });
 
-  // Problemas riscados
-  gsap.utils.toArray<HTMLElement>('[data-strike]').forEach((el, i) => {
-    gsap.fromTo(
-      el,
-      { backgroundSize: '0% 0.08em' },
-      {
-        backgroundSize: '100% 0.08em',
-        duration: 0.9,
-        ease: 'power3.inOut',
-        delay: i * 0.15,
-        scrollTrigger: { trigger: el, start: 'top 78%', once: true },
-      },
-    );
-  });
 
   document.fonts?.ready.then(() => ScrollTrigger.refresh());
 }

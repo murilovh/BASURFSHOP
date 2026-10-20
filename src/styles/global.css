@@ -144,12 +144,3 @@ html.lenis, html.lenis body { height: auto; }
   pointer-events: auto;
 }
 
-/* Risco dos problemas: atravessa todas as linhas quando a frase quebra */
-.strike {
-  background-image: linear-gradient(var(--c-rosa), var(--c-rosa));
-  background-repeat: no-repeat;
-  background-position: 0 58%;
-  background-size: 100% 0.08em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}

@@ -33,6 +33,14 @@ npm run preview  # serve o dist/
 
 A logo é gerada a partir de `src/assets/logo-ba.png` com `node scripts/prepare-logo.mjs`, que cria a versão transparente, os favicons e a imagem de Open Graph sem redesenhar nada.
 
+## Materiais
+
+| Material | Onde |
+|---|---|
+| Vídeo de apresentação do site (41 s, 1920 × 1080, MP4) | `materiais/video/apresentacao-site-ba-surfboards.mp4` |
+| Projeto do vídeo (Remotion), para editar e gerar de novo | `video/` (ver [video/README.md](video/README.md)) |
+| Plaquinha com QR code para avaliação no Google | `materiais/plaquinha-avaliacao/` |
+
 ## Pendências (dependem do Beto)
 
 Nada abaixo foi inventado no site: onde falta dado, há um placeholder ou um texto neutro marcado com `TODO` no código (busque por `TODO(`).

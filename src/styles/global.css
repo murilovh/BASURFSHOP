@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 @config '../../tailwind.config.mjs';
+/* o projeto do vídeo (video/) não faz parte do site */
+@source not '../../video';
 
 @import '@fontsource-variable/unbounded/wght.css';
 @import '@fontsource-variable/archivo/wght.css';

@@ -5,3 +5,6 @@ dist/
 .env.*
 .DS_Store
 lighthouse-report*.html
+
+# capturas de tela temporarias de preview
+previews-tmp/

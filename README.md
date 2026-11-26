@@ -20,7 +20,7 @@ npm run preview  # serve o dist/
 | O quê | Arquivo |
 |---|---|
 | Telefone, e-mail, endereço, redes, horário, mensagens do WhatsApp | `src/data/site.ts` |
-| Domínio do site (sitemap, canonical, OG) | `src/data/site-url.mjs` e `public/robots.txt` |
+| Domínio do site (sitemap, canonical, OG, robots.txt) | `src/data/site-url.mjs` (na Vercel usa o endereço `.vercel.app`; para domínio próprio, defina `SITE_URL` nas variáveis do projeto) |
 | Fotos da galeria | `src/data/gallery.ts` |
 | Respostas do FAQ | `src/components/Faq.astro` |
 | Citação e foto do Beto | `src/components/Beto.astro` |
@@ -48,7 +48,7 @@ Nada abaixo foi inventado no site: onde falta dado, há um placeholder ou um tex
 **Dados da loja**
 - [ ] `TODO(horario)`: horário de funcionamento, inclusive alta e baixa temporada. Hoje aparece "Confirme o horário pelo WhatsApp antes de ir". Também falta adicionar `openingHoursSpecification` no JSON-LD.
 - [ ] `TODO(geo)`: latitude e longitude do pin no Google Maps, para o JSON-LD.
-- [ ] `TODO(dominio)`: domínio definitivo. Hoje está `https://www.basurfboards.com.br` como provisório.
+- [ ] `TODO(dominio)`: domínio definitivo. Hoje o site usa o endereço `.vercel.app` da Vercel.
 - [ ] O perfil do Google aparece como "Baboardshop - Surf concertos". Vale corrigir o nome para "BA Surfboards" e "consertos" (com S) no Google Meu Negócio.
 
 **Serviços e processos**
